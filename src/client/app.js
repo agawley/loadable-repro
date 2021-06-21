@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 
 import loadable from '@loadable/component';
 
-const SomeText = loadable(() => import('./components'), {
+const SomeText = loadable(() => import(/* webpackPrefetch: true */ './components'), {
     fallback: <div>Loading...</div>,
 });
 
