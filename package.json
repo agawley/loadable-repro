@@ -1,0 +1,52 @@
+{
+  "name": "my-express-application",
+  "version": "1.0.4",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --silent",
+    "offline": "webpack --config=webpack.config.js & sls offline start",
+    "deploy": "set -e; git diff-index --quiet HEAD --; webpack --config=webpack.config.prod.js; jest --silent; npm version patch; sls deploy",
+    "deployStaging": "set -e; webpack --config=webpack.config.prod.js; jest --silent; sls deploy --stage staging"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@loadable/component": "^5.15.0",
+    "@loadable/server": "^5.15.0",
+    "express": "^4.17.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "serverless-http": "^2.6.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@loadable/babel-plugin": "^5.13.2",
+    "@loadable/webpack-plugin": "^5.15.0",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^8.1.1",
+    "css-loader": "^5.0.1 ",
+    "process": "^0.11.10",
+    "serverless": "^2.43.1",
+    "serverless-api-compression": "^1.0.1",
+    "serverless-domain-manager": "^5.1.0",
+    "serverless-offline": "^7.0.0",
+    "serverless-plugin-warmup": "^5.0.0",
+    "serverless-webpack": "^5.4.2",
+    "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack": "^5.16.0",
+    "webpack-cli": "^4.4.0"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "tabWidth": 4
+  }
+}
