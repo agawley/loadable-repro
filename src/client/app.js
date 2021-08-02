@@ -1,21 +1,18 @@
 import { Fragment, useState } from 'react';
 
-import loadable from '@loadable/component';
-
-const SomeText = loadable(() => import(/* webpackPrefetch: true */ './components'), {
-    fallback: <div>Loading...</div>,
-});
+import Select from 'react-select';
 
 const App = () => {
     const [show, setShow] = useState(false);
 
     return (
-        <Fragment>
-            <a href="#" onClick={() => setShow(!show)}>
-                show/hide
-            </a>
-            {show && <SomeText />}
-        </Fragment>
+        <Select
+            name="hi"
+            option={[
+                { label: 'hello', value: 0 },
+                { label: 'world', value: 1 },
+            ]}
+        />
     );
 };
 
