@@ -1,10 +1,6 @@
-import { Fragment, useState } from 'react';
-
 import Select from 'react-select';
 
 const App = () => {
-    const [show, setShow] = useState(false);
-
     return (
         <Select
             name="hi"

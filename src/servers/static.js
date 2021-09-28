@@ -10,26 +10,9 @@ import serverless from 'serverless-http';
 export const app = express();
 app.set('view engine', 'pug');
 
-app.use(
-    '/public',
-    express.static(path.normalize(path.join(__dirname, '../', 'public')), {
-        cacheControl: true,
-        setHeaders: res => {
-            res.setHeader('Cache-Control', 'max-age=2592000, immutable');
-            res.setHeader('X-Robots-Tag', 'noindex');
-        },
-    })
-);
+app.use('/public', express.static(path.normalize(path.join(__dirname, '../', 'public'))));
 
 app.get('/*', (req, res) => {
-    console.log('start');
-    res.setHeader('Surrogate-Control', 'no-store');
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
-    res.setHeader('Expires', '0');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('X-Robots-Tag', 'noindex');
-    //res.sendFile(path.normalize(path.join(__dirname, '../', 'public/index.html')));
-
     const statsFile = path.normalize(path.join(__dirname, '../', 'public/loadable-stats.json'));
     const extractor = new ChunkExtractor({ statsFile });
 
@@ -54,11 +37,4 @@ app.get('/*', (req, res) => {
     res.end('</body></html>');
 });
 
-const baseHandler = serverless(app);
-export const handler = (event, context) => {
-    if (event.source === 'serverless-plugin-warmup') {
-        console.log('Warmer function');
-        return 'Lambda is warm!';
-    }
-    return baseHandler(event, context);
-};
+export const handler = serverless(app);
