@@ -24,7 +24,6 @@ app.get('/*', (req, res) => {
     );
     const scriptTags = extractor.getScriptTags();
     const linkTags = extractor.getLinkTags();
-    console.log(app);
 
     res.setHeader('content-type', 'text/html; charset=utf-8');
     res.status(200);
