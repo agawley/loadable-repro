@@ -1,4 +1,4 @@
-import App from './App.js';
+import App from './app.js';
 import ReactDOM from 'react-dom';
 import { loadableReady } from '@loadable/component';
 
